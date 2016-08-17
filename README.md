@@ -204,7 +204,7 @@ Constructs a new line renderer for either canvas or SVG.
 *seriesLine*.**xValue**(*accessorFunc*)  
 *seriesLine*.**yValue**(*accessorFunc*)
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesLine*.**xScale**(*scale*)  
 *seriesLine*.**yScale**(*scale*)
@@ -241,7 +241,7 @@ Constructs a new point series renderer for either canvas or SVG.
 *seriesPoint*.**xValue**(*accessorFunc*)  
 *seriesPoint*.**yValue**(*accessorFunc*)
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesPoint*.**xScale**(*scale*)  
 *seriesPoint*.**yScale**(*scale*)
@@ -285,7 +285,7 @@ Constructs a new area series renderer for either canvas or SVG.
 *seriesArea*.**yValue**(*accessorFunc*)
 *seriesArea*.**y0Value**(*accessorFunc*)  
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesArea*.**orient**(*orientation*)
 
@@ -321,7 +321,7 @@ Constructs a new bar series renderer for either canvas or SVG.
 *seriesBar*.**yValue**(*accessorFunc*)
 *seriesBar*.**y0Value**(*accessorFunc*)  
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesBar*.**orient**(*orientation*)
 
@@ -360,7 +360,7 @@ Constructs a new candlestick renderer for either canvas or SVG.
 *seriesCandlestick*.**yOpen**(*accessorFunc*)  
 *seriesCandlestick*.**yClose**(*accessorFunc*)
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesCandlestick*.**xScale**(*scale*)  
 *seriesCandlestick*.**yScale**(*scale*)
@@ -392,7 +392,7 @@ Constructs a new OHLC renderer for either canvas or SVG.
 *seriesOhlc*.**yOpen**(*accessorFunc*)  
 *seriesOhlc*.**yClose**(*accessorFunc*)
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesOhlc*.**xScale**(*scale*)  
 *seriesOhlc*.**yScale**(*scale*)
@@ -432,7 +432,7 @@ Constructs a new boxplot renderer for either canvas or SVG.
 *seriesBoxPlot*.**low**(*accessorFunc*)  
 *seriesBoxPlot*.**width**(*accessorFunc*)  
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesBoxPlot*.**orient**(*orientation*)  
 
@@ -473,7 +473,7 @@ Constructs a new error bar renderer for either canvas or SVG.
 *seriesErrorBar*.**low**(*accessorFunc*)  
 *seriesErrorBar*.**width**(*accessorFunc*)  
 
-If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor.
+If *accessorFunc* is specified, sets the accessor to the specified function and returns this series. If *accessorFunc* is not specified, returns the current accessor. The `accessorFunc(datum, index)` function is called on each item of the data, returning the relevant value for the given accessor. The respective scale is applied to the value returned by the accessor before rendering.
 
 *seriesErrorBar*.**orient**(*orientation*)  
 
