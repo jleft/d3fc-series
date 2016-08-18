@@ -2,17 +2,22 @@ const webshot = require('webshot');
 const fs = require('fs');
 const path = require('path');
 
+const bodyMargin = 8;
 const width = 500;
 const height = 250;
 
 const config = {
     screenSize: {
-        width: width,
-        height: height
+        width: width + bodyMargin,
+        height: height + bodyMargin
     },
     shotSize: {
         width: width,
         height: height
+    },
+    shotOffset: {
+        left: bodyMargin,
+        right: bodyMargin
     }
 };
 
