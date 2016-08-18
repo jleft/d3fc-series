@@ -26,7 +26,7 @@ export default () => {
     };
 
     rebind(line, base, 'xScale', 'xValue', 'yScale', 'yValue', 'orient', 'decorate');
-    rebind(line, dataJoin, 'key');
+    rebind(line, join, 'key');
     rebind(line, lineData, 'curve');
 
     return line;

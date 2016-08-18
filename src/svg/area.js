@@ -32,7 +32,7 @@ export default () => {
     };
 
     rebind(area, base, 'xScale', 'xValue', 'yScale', 'yValue', 'y0Value', 'orient', 'decorate');
-    rebind(area, dataJoin, 'key');
+    rebind(area, join, 'key');
     rebind(area, areaData, 'curve');
 
     return area;

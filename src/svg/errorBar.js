@@ -48,7 +48,7 @@ export default () => {
     };
 
     rebindAll(errorBar, base);
-    rebind(errorBar, dataJoin, 'key');
+    rebind(errorBar, join, 'key');
 
     return errorBar;
 };

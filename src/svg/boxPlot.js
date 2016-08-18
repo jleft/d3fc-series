@@ -50,7 +50,7 @@ export default () => {
     };
 
     rebindAll(boxPlot, base);
-    rebind(boxPlot, dataJoin, 'key');
+    rebind(boxPlot, join, 'key');
     rebind(boxPlot, pathGenerator, 'cap');
 
     return boxPlot;

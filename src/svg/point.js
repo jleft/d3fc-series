@@ -37,7 +37,7 @@ export default () => {
     };
 
     rebind(point, base, 'xScale', 'xValue', 'yScale', 'yValue', 'orient', 'decorate');
-    rebind(point, dataJoin, 'key');
+    rebind(point, join, 'key');
     rebind(point, symbol, 'type', 'size');
 
     return point;
