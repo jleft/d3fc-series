@@ -1,4 +1,4 @@
-import candlestick from './candlestick';
+import ohlcBase from './ohlcBase';
 import { shapeOhlc } from 'd3fc-shape';
 
-export default () => candlestick(shapeOhlc(), 'ohlc');
+export default () => ohlcBase(shapeOhlc(), 'ohlc');
