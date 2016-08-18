@@ -27,8 +27,10 @@ export default () => {
 
         if (base.orient() === 'vertical') {
             pathGenerator.verticalAlign('top');
+            pathGenerator.horizontalAlign('center');
         } else {
             pathGenerator.horizontalAlign('right');
+            pathGenerator.verticalAlign('center');
         }
 
         projectedData.forEach((datum, i) => {
