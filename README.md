@@ -4,19 +4,19 @@ A collection of components for rendering data series to SVG and canvas, includin
 
 <table>
 <tr>
-<td><img src="screenshots/boxplot.png"/></td>
-<td><img src="screenshots/candlestick.png"/></td>
-<td><img src="screenshots/line.png"/></td>
+  <td><a href="#boxplot"><img src="screenshots/boxplot.png"/></a></td>
+  <td><a href="#candlestick"><img src="screenshots/candlestick.png"/></a></td>
+  <td><a href="#line"><img src="screenshots/line.png"/></a></td>
 </tr>
 <tr>
-<td><img src="screenshots/ohlc.png"/></td>
-<td><img src="screenshots/area.png"/></td>
-<td><img src="screenshots/point.png"/></td>
+  <td><a href="#ohlc"><img src="screenshots/ohlc.png"/></a></td>
+  <td><a href="#area"><img src="screenshots/area.png"/></a></td>
+  <td><a href="#point"><img src="screenshots/point.png"/></a></td>
 </tr>
 <tr>
-<td><img src="screenshots/bar.png"/></td>
-<td><img src="screenshots/errorbar.png"/></td>
-<td><img src="screenshots/multi.png"/></td>
+  <td><a href="#bar"><img src="screenshots/bar.png"/></a></td>
+  <td><a href="#errorbar"><img src="screenshots/errorbar.png"/></a></td>
+  <td><a href="#multi"><img src="screenshots/multi.png"/></a></td>
 </tr>
 </table>
 
@@ -500,7 +500,7 @@ If *decorateFunc* is specified, sets the decorator function to the specified fun
 
 If *ctx* is specified, sets the canvas context and returns this series. If *ctx* is not specified, returns the current context.
 
-## Multi series
+## Multi
 
 ![](screenshots/multi.png)
 
