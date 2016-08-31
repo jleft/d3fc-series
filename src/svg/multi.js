@@ -7,9 +7,9 @@ export default () => {
 
     const base = multiBase();
 
-    const innerJoin = dataJoin('g', 'inner');
+    const innerJoin = dataJoin('g');
 
-    const join = dataJoin('g', 'series');
+    const join = dataJoin('g', 'multi');
 
     const multi = (selection) => {
         const mapping = base.mapping();
@@ -29,7 +29,7 @@ export default () => {
                 const seriesData = mapping(data, dataSeries, seriesIndex);
                 const innerContainer = innerJoin(select(seriesGroup[seriesIndex]), [seriesData]);
 
-                innerContainer.datum(seriesData).call(dataSeries);
+                innerContainer.call(dataSeries);
             });
 
             container.order();
