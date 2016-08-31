@@ -36,7 +36,7 @@ export default () => {
         });
     };
 
-    rebind(point, base, 'xScale', 'xValue', 'yScale', 'yValue', 'orient', 'decorate');
+    rebindAll(point, base, exclude('baseValue', 'barWidth'));
     rebind(point, join, 'key');
     rebind(point, symbol, 'type', 'size');
 

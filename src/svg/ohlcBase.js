@@ -9,7 +9,7 @@ export default (pathGenerator, seriesName) => {
     const base = ohlcBase();
     const join = dataJoin('g', seriesName);
     const containerTranslation =
-        (values) => 'translate(' + values.x + ', ' + values.yHigh + ')';
+        (values) => 'translate(' + values.cross + ', ' + values.high + ')';
 
     const candlestick = (selection) => {
         selection.each((data, index, group) => {
@@ -35,10 +35,10 @@ export default (pathGenerator, seriesName) => {
                     .attr('transform', () => containerTranslation(values) + ' scale(1)');
 
                 pathGenerator.x(0)
-                    .open(() => values.yOpen - values.yHigh)
+                    .open(() => values.open - values.high)
                     .high(0)
-                    .low(() => values.yLow - values.yHigh)
-                    .close(() => values.yClose - values.yHigh);
+                    .low(() => values.low - values.high)
+                    .close(() => values.close - values.high);
 
                 singleCandlestick.select('path')
                     .attr('d', pathGenerator([d]));

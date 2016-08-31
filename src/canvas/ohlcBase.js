@@ -16,14 +16,14 @@ export default (pathGenerator) => {
             context.save();
 
             const values = base.values(d, i);
-            context.translate(values.x, values.yHigh);
+            context.translate(values.cross, values.high);
             context.beginPath();
 
             pathGenerator.x(0)
-                .open(() => values.yOpen - values.yHigh)
+                .open(() => values.open - values.high)
                 .high(0)
-                .low(() => values.yLow - values.yHigh)
-                .close(() => values.yClose - values.yHigh)([d]);
+                .low(() => values.low - values.high)
+                .close(() => values.close - values.high)([d]);
 
             const color = values.direction === 'up' ? colors.green : colors.red;
             context.strokeStyle = color;

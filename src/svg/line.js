@@ -25,7 +25,7 @@ export default () => {
         });
     };
 
-    rebind(line, base, 'xScale', 'xValue', 'yScale', 'yValue', 'orient', 'decorate');
+    rebindAll(line, base, exclude('baseValue', 'barWidth'));
     rebind(line, join, 'key');
     rebind(line, lineData, 'curve');
 

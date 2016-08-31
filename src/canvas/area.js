@@ -30,7 +30,7 @@ export default () => {
         context.closePath();
     };
 
-    rebind(area, base, 'xScale', 'xValue', 'yScale', 'yValue', 'y0Value', 'orient');
+    rebindAll(area, base, exclude('barWidth'));
     rebind(area, areaData, 'curve', 'context');
 
     return area;

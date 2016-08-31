@@ -25,9 +25,9 @@ var yScale = d3.scaleLinear()
 var errorBar = fc.seriesSvgErrorBar()
     .xScale(xScale)
     .yScale(yScale)
-    .value(function(d) { return d.value; })
-    .high(function(d) { return d.high; })
-    .low(function(d) { return d.low; });
+    .crossValue(function(d) { return d.value; })
+    .highValue(function(d) { return d.high; })
+    .lowValue(function(d) { return d.low; });
 
 container.append('g')
     .datum(data)
@@ -42,7 +42,7 @@ var canvasErrorBar = fc.seriesCanvasErrorBar()
     .context(ctx)
     .xScale(xScale)
     .yScale(yScale)
-    .value(function(d) { return d.value; })
-    .high(function(d) { return d.high; })
-    .low(function(d) { return d.low; });
+    .crossValue(function(d) { return d.value; })
+    .highValue(function(d) { return d.high; })
+    .lowValue(function(d) { return d.low; });
 canvasErrorBar(data);

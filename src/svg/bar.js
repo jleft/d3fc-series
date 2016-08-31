@@ -75,7 +75,7 @@ export default () => {
         });
     };
 
-    rebind(bar, base, 'xScale', 'xValue', 'yScale', 'yValue', 'y0Value', 'orient', 'decorate', 'barWidth');
+    rebindAll(bar, base);
     rebind(bar, join, 'key');
 
     return bar;

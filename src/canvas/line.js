@@ -24,7 +24,7 @@ export default () => {
         context.closePath();
     };
 
-    rebind(line, base, 'xScale', 'xValue', 'yScale', 'yValue', 'orient', 'decorate');
+    rebindAll(line, base, exclude('baseValue', 'barWidth'));
     rebind(line, lineData, 'curve', 'context');
 
     return line;

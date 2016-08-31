@@ -15,12 +15,12 @@ var yScale = d3.scaleLinear()
     .range([height, 0]);
 
 var svgBar = fc.seriesSvgBar()
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 
 var svgLine = fc.seriesSvgLine()
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 
 var svgMulti = fc.seriesSvgMulti()
     .xScale(xScale)
@@ -37,12 +37,12 @@ canvas.height = height;
 var ctx = canvas.getContext('2d');
 
 var canvasBar = fc.seriesCanvasBar()
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 
 var canvasLine = fc.seriesCanvasLine()
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 
 
 var canvasMulti = fc.seriesCanvasMulti()

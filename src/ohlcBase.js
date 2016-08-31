@@ -7,39 +7,39 @@ export default () => {
 
     let xScale = scaleIdentity();
     let yScale = scaleIdentity();
-    let xValue = (d) => d.date;
-    let yOpenValue = (d) => d.open;
-    let yHighValue = (d) => d.high;
-    let yLowValue = (d) => d.low;
-    let yCloseValue = (d) => d.close;
+    let crossValue = (d) => d.date;
+    let openValue = (d) => d.open;
+    let highValue = (d) => d.high;
+    let lowValue = (d) => d.low;
+    let closeValue = (d) => d.close;
     let barWidth = fractionalBarWidth(0.75);
     let decorate = () => {};
-    let xValueScaled = (d, i) => xScale(xValue(d, i));
+    let crossValueScaled = (d, i) => xScale(crossValue(d, i));
 
     let base = () => {};
 
-    base.width = (data) => barWidth(data.map(xValueScaled));
+    base.width = (data) => barWidth(data.map(crossValueScaled));
 
-    base.defined = (d, i) => defined(xValue, yOpenValue, yLowValue, yHighValue, yCloseValue)(d, i);
+    base.defined = (d, i) => defined(crossValue, openValue, lowValue, highValue, closeValue)(d, i);
 
     base.values = (d, i) => {
-        const yCloseRaw = yCloseValue(d, i);
-        const yOpenRaw = yOpenValue(d, i);
+        const closeRaw = closeValue(d, i);
+        const openRaw = openValue(d, i);
 
         let direction = '';
-        if (yCloseRaw > yOpenRaw) {
+        if (closeRaw > openRaw) {
             direction = 'up';
-        } else if (yCloseRaw < yOpenRaw) {
+        } else if (closeRaw < openRaw) {
             direction = 'down';
         }
 
         return {
-            x: xValueScaled(d, i),
-            yOpen: yScale(yOpenRaw),
-            yHigh: yScale(yHighValue(d, i)),
-            yLow: yScale(yLowValue(d, i)),
-            yClose: yScale(yCloseRaw),
-            direction: direction
+            cross: crossValueScaled(d, i),
+            open: yScale(openRaw),
+            high: yScale(highValue(d, i)),
+            low: yScale(lowValue(d, i)),
+            close: yScale(closeRaw),
+            direction
         };
     };
 
@@ -64,39 +64,39 @@ export default () => {
         yScale = args[0];
         return base;
     };
-    base.xValue = (...args) => {
+    base.crossValue = (...args) => {
         if (!args.length) {
-            return xValue;
+            return crossValue;
         }
-        xValue = args[0];
+        crossValue = args[0];
         return base;
     };
-    base.yOpenValue = (...args) => {
+    base.openValue = (...args) => {
         if (!args.length) {
-            return yOpenValue;
+            return openValue;
         }
-        yOpenValue = args[0];
+        openValue = args[0];
         return base;
     };
-    base.yHighValue = (...args) => {
+    base.highValue = (...args) => {
         if (!args.length) {
-            return yHighValue;
+            return highValue;
         }
-        yHighValue = args[0];
+        highValue = args[0];
         return base;
     };
-    base.yLowValue = (...args) => {
+    base.lowValue = (...args) => {
         if (!args.length) {
-            return yLowValue;
+            return lowValue;
         }
-        yLowValue = args[0];
+        lowValue = args[0];
         return base;
     };
-    base.yValue = base.yCloseValue = (...args) => {
+    base.yValue = base.closeValue = (...args) => {
         if (!args.length) {
-            return yCloseValue;
+            return closeValue;
         }
-        yCloseValue = args[0];
+        closeValue = args[0];
         return base;
     };
     base.barWidth = (...args) => {

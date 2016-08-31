@@ -31,7 +31,7 @@ export default () => {
         });
     };
 
-    rebind(area, base, 'xScale', 'xValue', 'yScale', 'yValue', 'y0Value', 'orient', 'decorate');
+    rebindAll(area, base, exclude('barWidth'));
     rebind(area, join, 'key');
     rebind(area, areaData, 'curve');
 

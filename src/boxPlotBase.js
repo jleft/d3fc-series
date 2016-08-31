@@ -7,44 +7,44 @@ export default () => {
 
     let xScale = scaleIdentity();
     let yScale = scaleIdentity();
-    let upperQuartile = (d) => d.upperQuartile;
-    let lowerQuartile = (d) => d.lowerQuartile;
-    let high = (d) => d.high;
-    let low = (d) => d.low;
-    let value = (d) => d.value;
-    let median = (d) => d.median;
+    let upperQuartileValue = (d) => d.upperQuartile;
+    let lowerQuartileValue = (d) => d.lowerQuartile;
+    let highValue = (d) => d.high;
+    let lowValue = (d) => d.low;
+    let crossValue = (d) => d.value;
+    let medianValue = (d) => d.median;
     let orient = 'vertical';
     let barWidth = fractionalBarWidth(0.5);
     let decorate = () => {};
 
     const base = () => {};
 
-    base.defined = defined(low, high, lowerQuartile, upperQuartile, value, median);
+    base.defined = (d, i) => defined(lowValue, highValue, lowerQuartileValue, upperQuartileValue, crossValue, medianValue)(d, i);
 
     base.computeBarWidth = (filteredData) => {
         const scale = orient === 'vertical' ? xScale : yScale;
-        return barWidth(filteredData.map((d, i) => scale(value(d, i))));
+        return barWidth(filteredData.map((d, i) => scale(crossValue(d, i))));
     };
 
     base.values = (d, i) => {
         if (orient === 'vertical') {
-            const y = yScale(high(d, i));
+            const y = yScale(highValue(d, i));
             return {
-                origin: [xScale(value(d, i)), y],
+                origin: [xScale(crossValue(d, i)), y],
                 high: 0,
-                upperQuartile: yScale(upperQuartile(d, i)) - y,
-                median: yScale(median(d, i)) - y,
-                lowerQuartile: yScale(lowerQuartile(d, i)) - y,
-                low: yScale(low(d, i)) - y
+                upperQuartile: yScale(upperQuartileValue(d, i)) - y,
+                median: yScale(medianValue(d, i)) - y,
+                lowerQuartile: yScale(lowerQuartileValue(d, i)) - y,
+                low: yScale(lowValue(d, i)) - y
             };
         } else {
-            const x = xScale(low(d, i));
+            const x = xScale(lowValue(d, i));
             return {
-                origin: [x, yScale(value(d, i))],
-                high: xScale(high(d, i)) - x,
-                upperQuartile: xScale(upperQuartile(d, i)) - x,
-                median: xScale(median(d, i)) - x,
-                lowerQuartile: xScale(lowerQuartile(d, i)) - x,
+                origin: [x, yScale(crossValue(d, i))],
+                high: xScale(highValue(d, i)) - x,
+                upperQuartile: xScale(upperQuartileValue(d, i)) - x,
+                median: xScale(medianValue(d, i)) - x,
+                lowerQuartile: xScale(lowerQuartileValue(d, i)) - x,
                 low: 0
             };
         }
@@ -78,46 +78,46 @@ export default () => {
         yScale = args[0];
         return base;
     };
-    base.lowerQuartile = (...args) => {
+    base.lowerQuartileValue = (...args) => {
         if (!args.length) {
-            return lowerQuartile;
+            return lowerQuartileValue;
         }
-        lowerQuartile = functor(args[0]);
+        lowerQuartileValue = functor(args[0]);
         return base;
     };
-    base.upperQuartile = (...args) => {
+    base.upperQuartileValue = (...args) => {
         if (!args.length) {
-            return upperQuartile;
+            return upperQuartileValue;
         }
-        upperQuartile = functor(args[0]);
+        upperQuartileValue = functor(args[0]);
         return base;
     };
-    base.low = (...args) => {
+    base.lowValue = (...args) => {
         if (!args.length) {
-            return low;
+            return lowValue;
         }
-        low = functor(args[0]);
+        lowValue = functor(args[0]);
         return base;
     };
-    base.high = (...args) => {
+    base.highValue = (...args) => {
         if (!args.length) {
-            return high;
+            return highValue;
         }
-        high = functor(args[0]);
+        highValue = functor(args[0]);
         return base;
     };
-    base.value = (...args) => {
+    base.crossValue = (...args) => {
         if (!args.length) {
-            return value;
+            return crossValue;
         }
-        value = functor(args[0]);
+        crossValue = functor(args[0]);
         return base;
     };
-    base.median = (...args) => {
+    base.medianValue = (...args) => {
         if (!args.length) {
-            return median;
+            return medianValue;
         }
-        median = functor(args[0]);
+        medianValue = functor(args[0]);
         return base;
     };
     base.barWidth = (...args) => {

@@ -17,8 +17,8 @@ var yScale = d3.scaleLinear()
 var svgLine = fc.seriesSvgLine()
     .xScale(xScale)
     .yScale(yScale)
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 
 container.append('g')
     .datum(data)
@@ -33,6 +33,6 @@ var canvasLine = fc.seriesCanvasLine()
     .xScale(xScale)
     .yScale(yScale)
     .context(ctx)
-    .xValue(function(_, i) { return i; })
-    .yValue(function(d) { return d; });
+    .crossValue(function(_, i) { return i; })
+    .mainValue(function(d) { return d; });
 canvasLine(data);

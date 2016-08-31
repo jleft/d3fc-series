@@ -7,26 +7,22 @@ export default () => {
 
     let xScale = scaleIdentity();
     let yScale = scaleIdentity();
-    let y0Value = () => 0;
-    let xValue = d => d.x;
-    let yValue = d => d.y;
+    let baseValue = () => 0;
+    let crossValue = d => d.x;
+    let mainValue = d => d.y;
     let decorate = () => {};
     let barWidth = fractionalBarWidth(0.75);
     let orient = 'vertical';
 
     const base = () => {};
 
-    base.y0 = (d, i) => yScale(y0Value(d, i));
-    base.x = (d, i) => xScale(xValue(d, i));
-    base.y = (d, i) => yScale(yValue(d, i));
-
-    base.defined = (d, i) => defined(y0Value, xValue, yValue)(d, i);
+    base.defined = (d, i) => defined(baseValue, crossValue, mainValue)(d, i);
 
     base.values = (d, i) => {
         if (orient === 'vertical') {
-            const y = yScale(yValue(d, i));
-            const y0 = yScale(y0Value(d, i));
-            const x = xScale(xValue(d, i));
+            const y = yScale(mainValue(d, i));
+            const y0 = yScale(baseValue(d, i));
+            const x = xScale(crossValue(d, i));
             return {
                 x,
                 y,
@@ -38,9 +34,9 @@ export default () => {
                 transposedY: y
             };
         } else {
-            const y = xScale(yValue(d, i));
-            const y0 = xScale(y0Value(d, i));
-            const x = yScale(xValue(d, i));
+            const y = xScale(mainValue(d, i));
+            const y0 = xScale(baseValue(d, i));
+            const x = yScale(crossValue(d, i));
             return {
                 x,
                 y,
@@ -75,25 +71,25 @@ export default () => {
         yScale = args[0];
         return base;
     };
-    base.y0Value = (...args) => {
+    base.baseValue = (...args) => {
         if (!args.length) {
-            return y0Value;
+            return baseValue;
         }
-        y0Value = functor(args[0]);
+        baseValue = functor(args[0]);
         return base;
     };
-    base.xValue = (...args) => {
+    base.crossValue = (...args) => {
         if (!args.length) {
-            return xValue;
+            return crossValue;
         }
-        xValue = functor(args[0]);
+        crossValue = functor(args[0]);
         return base;
     };
-    base.yValue = (...args) => {
+    base.mainValue = (...args) => {
         if (!args.length) {
-            return yValue;
+            return mainValue;
         }
-        yValue = functor(args[0]);
+        mainValue = functor(args[0]);
         return base;
     };
     base.barWidth = (...args) => {

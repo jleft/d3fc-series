@@ -16,7 +16,7 @@ export default () => {
     const crossAxisDimension = (generator) =>
         base.orient() === 'vertical' ? generator.width : generator.height;
 
-    const area = (data) => {
+    const bar = (data) => {
         const context = pathGenerator.context();
 
         const filteredData = data.filter(base.defined);
@@ -50,8 +50,8 @@ export default () => {
         });
     };
 
-    rebind(area, base, 'xScale', 'xValue', 'yScale', 'yValue', 'y0Value', 'orient', 'decorate', 'barWidth');
-    rebind(area, pathGenerator, 'context');
+    rebindAll(bar, base);
+    rebind(bar, pathGenerator, 'context');
 
-    return area;
+    return bar;
 };
