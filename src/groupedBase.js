@@ -1,6 +1,8 @@
-import { scaleLinear } from 'd3-scale';
+import { scaleLinear, scaleBand } from 'd3-scale';
 import fractionalBarWidth from './fractionalBarWidth';
 import functor from './functor';
+import { range } from 'd3-array';
+import { rebindAll, includeMap } from 'd3fc-rebind';
 
 export default (series) => {
 
@@ -8,9 +10,10 @@ export default (series) => {
     let decorate = () => {};
     let xScale = scaleLinear();
 
+    const offsetScale = scaleBand();
     const grouped = () => {};
 
-    grouped.computeGroupWidth = (data) => {
+    const computeGroupWidth = (data) => {
         if (!data.length) {
             return 0;
         }
@@ -20,6 +23,20 @@ export default (series) => {
         const width = groupWidth(seriesData.map(x));
         return width;
     };
+
+    grouped.configureOffsetScale = (data) => {
+        const groupWidth = computeGroupWidth(data);
+
+        const halfWidth = groupWidth / 2;
+        offsetScale.domain(range(0, data.length))
+          .range([-halfWidth, halfWidth]);
+
+        if (series.barWidth) {
+            series.barWidth(offsetScale.bandwidth());
+        }
+    };
+
+    grouped.offsetScale = () => offsetScale;
 
     grouped.groupWidth = (...args) => {
         if (!args.length) {
@@ -42,6 +59,8 @@ export default (series) => {
         xScale = args[0];
         return grouped;
     };
+
+    rebindAll(grouped, offsetScale, includeMap({'paddingInner': 'subPadding'}));
 
     return grouped;
 };

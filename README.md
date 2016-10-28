@@ -684,6 +684,10 @@ groupedCanvasBar(series);
 
 If *groupWidthFunc* is specified, sets the group width function and returns this series. If *groupWidthFunc* is not specified, returns the current group width function. The group width function is invoked with an array of values, in the screen coordinate system, and should return the desired width for the groups. It defaults to `fractionalBarWidth(0.75)`.
 
+<a name="grouped_subPadding" href="#grouped_subPadding">#</a> *grouped*.**subPadding**(*padding*)  
+
+If *padding* is specified, sets the sub-padding to the specified value which must be in the range [0, 1]. If *padding* is not specified, returns the current sub-padding. The sub-padding value determines the padding between the bars within each group. 
+
 ### Stacked
 
 ![](screenshots/stacked.png)

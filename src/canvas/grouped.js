@@ -7,22 +7,14 @@ export default function(series) {
     const base = groupedBase(series);
 
     const grouped = (data) => {
-        const groupWidth = base.computeGroupWidth(data);
-        const offsetScale = scaleLinear();
-
-        const subBarWidth = groupWidth / data.length;
-        if (series.barWidth) {
-            series.barWidth(subBarWidth);
-        }
-
-        const halfWidth = groupWidth / 2;
-        offsetScale.domain([0, data.length - 1])
-            .range([-halfWidth, halfWidth - subBarWidth]);
+        base.configureOffsetScale(data);
 
         data.forEach((seriesData, index) => {
 
             // create a composite scale that applies the required offset
-            const compositeScale = x => base.xScale()(x) + offsetScale(index);
+            const compositeScale = x => base.xScale()(x) +
+                base.offsetScale()(index) +
+                base.offsetScale().bandwidth() / 2;
             series.xScale(compositeScale);
 
             // adapt the decorate function to give each series the correct index
@@ -32,7 +24,7 @@ export default function(series) {
     };
 
     rebindAll(grouped, series, exclude('decorate', 'xScale'));
-    rebindAll(grouped, base);
+    rebindAll(grouped, base, exclude('configureOffsetScale', 'configureOffset'));
 
     return grouped;
 }

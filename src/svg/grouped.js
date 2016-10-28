@@ -1,4 +1,4 @@
-import { scaleLinear } from 'd3-scale';
+import { scaleBand } from 'd3-scale';
 import { dataJoin } from 'd3fc-data-join';
 import { select } from 'd3-selection';
 import { rebindAll, exclude } from 'd3fc-rebind';
@@ -12,17 +12,7 @@ export default (series) => {
 
     const grouped = (selection) => {
         selection.each((data, index, group) => {
-            const groupWidth = base.computeGroupWidth(data);
-            const offsetScale = scaleLinear();
-
-            const subBarWidth = groupWidth / data.length;
-            if (series.barWidth) {
-                series.barWidth(subBarWidth);
-            }
-
-            const halfWidth = groupWidth / 2;
-            offsetScale.domain([0, data.length - 1])
-                .range([-halfWidth, halfWidth - subBarWidth]);
+            base.configureOffsetScale(data);
 
             const g = join(select(group[index]), data);
 
@@ -33,7 +23,9 @@ export default (series) => {
                     const container = select(group[index]);
 
                     // create a composite scale that applies the required offset
-                    const compositeScale = x => base.xScale()(x) + offsetScale(index);
+                    const compositeScale = x => base.xScale()(x) +
+                        base.offsetScale()(index) +
+                        base.offsetScale().bandwidth() / 2;
                     series.xScale(compositeScale);
 
                     // adapt the decorate function to give each series the correct index
@@ -45,7 +37,7 @@ export default (series) => {
     };
 
     rebindAll(grouped, series, exclude('decorate', 'xScale'));
-    rebindAll(grouped, base, exclude('computeGroupWidth'));
+    rebindAll(grouped, base, exclude('configureOffsetScale', 'configureOffset'));
 
     return grouped;
 };
